@@ -48,32 +48,27 @@ __
 Число n.
 Выходные данные:
 n-тое число Фибоначчи.*/
-import java.util.Random;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        labPrint(labGen());
+        Maze maze = new Maze(10, 10);
+        Point start = new Point(0, 9,"start");
+        Point exit = new Point(9, 5,"exit");
 
+        solveMaze(maze,start,exit);
 
     }
-    public static int[][] labGen(){
-        Random random=new Random();
-        int w = random.nextInt(3,10);
-        int h= random.nextInt(3,10);
-       int[][] result = new int[h][w];
-        for (int i = 0; i < result.length; i++) {
-            for (int j = 0; j < result[i].length; j++) {
-                result[i][j]=random.nextInt(2);
-            }
-        }
-       return result;
-    }
-    public static void labPrint(int[][]arr){
-        for (int[] points : arr) {
-            for (int row : points) {
-                System.out.print(row + " ");
-            }
-            System.out.println();
-        }
+
+    public static List<Point> solveMaze(Maze maze, Point start, Point exit) {
+        List<Point> path=new ArrayList<>();
+        maze.setStart(start);
+        maze.setExit(exit);
+        System.out.println(maze);
+        if (path.size()==0) System.out.println("Выхода нет");
+        return path;
+
     }
 }
