@@ -1,3 +1,5 @@
+package maze;
+
 public class Point {
     private int x;
     private int y;

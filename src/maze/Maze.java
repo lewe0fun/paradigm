@@ -1,3 +1,5 @@
+package maze;
+
 import java.util.Random;
 
 public class Maze {
@@ -18,7 +20,8 @@ public class Maze {
         Point[][] result = new Point[h][w];
         for (int i = 0; i < result.length; i++) {
             for (int j = 0; j < result[i].length; j++) {
-                result[i][j] = new Point(i, j, random.nextInt(2));
+                if (i==0||j==0||i==result[i].length-1||j==result[i].length-1)result[i][j]=new Point(i, j, 1);
+                else result[i][j] = new Point(i, j, random.nextInt(2));
             }
         }
         return result;
