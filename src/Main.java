@@ -2,12 +2,19 @@ import java.util.Arrays;
 
 //Задача 1: Напишите программу, которая находит все простые числа в заданном диапазоне.
 //Задача 2: Напишите программу, которая сортирует список чисел методом сортировки слиянием.
+//● Ваша задача
+//Написать программу на любом языке в любой парадигме для
+//бинарного поиска. На вход подаётся целочисленный массив и
+//число. На выходе - индекс элемента или -1, в случае если искомого
+//элемента нет в массиве.
 public class Main {
     public static void main(String[] args) {
         showPrimes(10, 50);
-        int[] sortArr = {43, 456, 46, 479, 36, 107};
-        int[] result = mergeSort(sortArr);
-        System.out.println("\n\nМетод сортировки слиянием:\n"+Arrays.toString(result));
+        int[] arr = {43, 456, 46, 479, 36, 107};
+        int[] sortedArr = mergeSort(arr);
+        System.out.println("\n\nМетод сортировки слиянием:\n"+Arrays.toString(sortedArr));
+        int digitToFind=36;
+        System.out.println("\nБинарный поиск числа "+digitToFind+": результат индекс - "+binarySearch(sortedArr,digitToFind));
     }
 
     public static void showPrimes(int a, int b) {
@@ -51,6 +58,23 @@ public class Main {
             result[destIndex++] = sorted2[index2++];
         }
         return result;
+    }
+    private static int binarySearch(int[] sortedArray, int valueToFind) {
+        int low=0;
+        int high=sortedArray.length-1;
+        int index = -1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (sortedArray[mid] < valueToFind) {
+                low = mid + 1;
+            } else if (sortedArray[mid] > valueToFind) {
+                high = mid - 1;
+            } else if (sortedArray[mid] == valueToFind) {
+                index = mid;
+                break;
+            }
+        }
+        return index;
     }
 
 }
